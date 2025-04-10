@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kontak - ikoet_dapoer</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- AOS Library -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('images/bg.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    nav a {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      text-decoration: none;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .contact-container {
+      max-width: 700px;
+      margin: 2rem auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      border-radius: 12px;
+    }
+
+    .contact-container h1 {
+      margin-top: 0;
+      font-size: 2rem;
+      color: #ff6347;
+    }
+
+    .contact-container p {
+      line-height: 1.6;
+    }
+
+    .contact-info {
+      margin-top: 1rem;
+    }
+
+    .contact-info div {
+      margin-bottom: 1rem;
+    }
+
+    .contact-info strong {
+      display: inline-block;
+      width: 100px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <div class="logo">ikoet_dapoer 🌶️</div>
+    <nav>
+      <a href="index.html">Beranda</a>
+      <a href="cart.html">Keranjang</a>
+      <a href="about.html">Tentang Kami</a>
+      <a href="contact.html">Kontak</a>
+    </nav>
+  </header>
+
+  <!-- Kontak Kami -->
+  <div class="contact-container" data-aos="fade-up">
+    <h1 data-aos="fade-up" data-aos-delay="100">Hubungi Kami</h1>
+    <p data-aos="fade-up" data-aos-delay="200">
+      Jika ada pertanyaan, pemesanan khusus, atau kerja sama, jangan ragu untuk menghubungi kami melalui informasi di bawah ini:
+    </p>
+
+    <div class="contact-info">
+      <div data-aos="fade-up" data-aos-delay="300"><strong>WhatsApp:</strong> <a href="https://wa.me/6282115870650" target="_blank" style="color:#fff;">+62 812-3456-7890</a></div>
+      <div data-aos="fade-up" data-aos-delay="400"><strong>Email:</strong> ikoetdapoer@email.com</div>
+      <div data-aos="fade-up" data-aos-delay="500"><strong>Instagram:</strong> <a href="https://instagram.com/ikoet_dapoer" target="_blank" style="color:#fff;">@ikoet_dapoer</a></div>
+      <div data-aos="fade-up" data-aos-delay="600"><strong>Alamat:</strong> Jl.jatinangor sumedang</div>
+    </div>
+  </div>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html>

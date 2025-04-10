@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Pesan Cepat - ikoet_dapoer</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('images/bg.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    nav a {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      text-decoration: none;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      border-radius: 12px;
+    }
+
+    .form-container h1 {
+      color: #ff6347;
+      font-size: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 0.6rem;
+      border-radius: 6px;
+      border: none;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      height: 80px;
+    }
+
+    .form-container button {
+      background: #ff4500;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .form-container button:hover {
+      background: #e03e00;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">ikoet_dapoer 🌶️</div>
+    <nav>
+      <a href="index.html">Beranda</a>
+      <a href="cart.html">Keranjang</a>
+      <a href="about.html">Tentang Kami</a>
+      <a href="order.html">Pesan Cepat</a>
+    </nav>
+  </header>
+
+  <div class="form-container">
+    <h1>Formulir Pemesanan Cepat</h1>
+    <form id="order-form">
+      <div class="form-group">
+        <label for="nama">Nama Lengkap</label>
+        <input type="text" id="nama" required>
+      </div>
+      <div class="form-group">
+        <label for="wa">Nomor WhatsApp</label>
+        <input type="text" id="wa" required placeholder="08xxxxxxxxxx">
+      </div>
+      <div class="form-group">
+        <label for="produk">Pilih Produk</label>
+        <select id="produk">
+          <option>risol mayo</option>
+          <option>wonton chili oil</option>
+          <option>cireng isi ayam swir</option>
+          <option>es teh manis</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="catatan">Catatan Tambahan</label>
+        <textarea id="catatan" placeholder="Contoh: Level pedas, request packing, dll."></textarea>
+      </div>
+      <button type="submit">Kirim Pesanan via WhatsApp</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("order-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const nama = document.getElementById("nama").value;
+      const wa = document.getElementById("wa").value;
+      const produk = document.getElementById("produk").value;
+      const catatan = document.getElementById("catatan").value;
+
+      const pesan = `Halo ikoet_dapoer! Saya ingin memesan:\n\nNama: ${nama}\nWhatsApp: ${wa}\nProduk: ${produk}\nCatatan: ${catatan || '-'}\n\nTerima kasih!`;
+      const url = `https://wa.me/62${wa.slice(1)}?text=${encodeURIComponent(pesan)}`;
+
+      window.open(url, "_blank");
+    });
+  </script>
+</body>
+</html>

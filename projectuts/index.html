@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Beranda - ikoet_dapoer</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('images/bg.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .nav-links button, .nav-links a {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    .nav-links button:hover, .nav-links a:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .promo-slider {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      max-height: 300px;
+      margin-top: 1rem;
+      border-radius: 12px;
+    }
+
+    .promo-slider .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slide {
+      min-width: 100%;
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+    }
+
+    .nav-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 50%;
+      z-index: 5;
+    }
+
+    .nav-button.left {
+      left: 10px;
+    }
+
+    .nav-button.right {
+      right: 10px;
+    }
+
+    .dots {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .dots span {
+      width: 12px;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .dots .active {
+      background: #ffffff;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .product-item {
+      padding: 1rem;
+      border-radius: 12px;
+      color: white;
+      text-align: center;
+      animation: fadeIn 0.8s ease forwards;
+    }
+
+    .product-item img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+    }
+
+    .product-item button {
+      margin-top: 0.5rem;
+      background: #ff4500;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .product-item button:hover {
+      background: #e03e00;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .promo-slider {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  max-height: 300px;
+  margin-top: 1rem;
+  border-radius: 12px;
+}
+
+.slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Tombol Navigasi Kiri & Kanan */
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 2.5rem;
+  cursor: pointer;
+  z-index: 10;
+  padding: 0 0.6rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.nav-button:hover {
+  transform: translateY(-50%) scale(1.2);
+  color: #ff6347;
+}
+
+.nav-button.left {
+  left: 10px;
+}
+
+.nav-button.right {
+  right: 10px;
+}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="main-header">
+    <div class="logo">ikoet_dapoer 🌶️</div>
+    <nav class="nav-links">
+      <button onclick="viewCart()">🛒 Keranjang</button>
+      <a href="order.html">pesan cepat</a>
+      <a href="contact.html">hubungi kami</a>
+      <a href="about.html">Tentang Kami</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+ <!-- Slider Promosi dengan Navigasi -->
+<div class="promo-slider">
+  <div class="slides" id="slide-track">
+    <div class="slide"><img src="images/ssambal.jpg" alt="Promo 1"></div>
+    <div class="slide"><img src="images/2.webp" alt="Promo 2"></div>
+    <div class="slide"><img src="images/promo3.jpg" alt="Promo 3"></div>
+  </div>
+
+  <!-- Tombol Navigasi -->
+  <button class="nav-button left" onclick="prevSlide()">&#10094;</button>
+  <button class="nav-button right" onclick="nextSlide()">&#10095;</button>
+</div>
+
+  <!-- Produk -->
+  <main id="product-list" class="product-grid"></main>
+
+  <!-- Script Produk & Slider -->
+  <script>
+    const products = [
+      { name: "risol mayo", price: 10000, image: "images/risolmayo.jpg" },
+      { name: "wonton chili oil", price: 10000, image: "images/wonton.jpg" },
+      { name: "cireng isi ayam", price: 10000, image: "images/cireng.jpg" },
+      { name: "es teh manis", price: 10000, image: "images/es teh.jpg" }
+    ];
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const productList = document.getElementById("product-list");
+
+    function renderProducts() {
+      products.forEach(product => {
+        const div = document.createElement("div");
+        div.className = "product-item";
+        div.innerHTML = `
+          <img src="${product.image}" alt="${product.name}">
+          <h3>${product.name}</h3>
+          <p>Rp${product.price.toLocaleString()}</p>
+          <button onclick='addToCart(${JSON.stringify(product)})'>Tambah ke Keranjang</button>
+        `;
+        productList.appendChild(div);
+      });
+    }
+
+    function addToCart(product) {
+      cart.push(product);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      alert(`${product.name} berhasil ditambahkan ke keranjang!`);
+    }
+
+    function viewCart() {
+      window.location.href = "cart.html";
+    }
+
+    renderProducts();
+
+    // Slider + Dot Navigasi
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const slideTrack = document.getElementById('slide-track');
+    const dotsContainer = document.getElementById('slider-dots');
+
+    function updateSlide() {
+      slideTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+      updateDots();
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateSlide();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      updateSlide();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSlide();
+    }
+
+    function createDots() {
+      slides.forEach((_, index) => {
+        const dot = document.createElement('span');
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+      });
+      updateDots();
+    }
+
+    function updateDots() {
+      const dots = dotsContainer.querySelectorAll('span');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+    }
+
+    createDots();
+    setInterval(nextSlide, 5000);
+  </script>
+
+  <!-- Footer -->
+  <footer style="position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.7); color: #ccc; text-align: center; padding: 0.8rem; font-size: 0.9rem; display: flex; justify-content: center; align-items: center; gap: 1.5rem; z-index: 100;">
+    <span>&copy; 2025 ikoet_dapoer. All rights reserved.</span>
+
+    <a href="https://wa.me/6282115870650" target="_blank" title="WhatsApp" style="display: flex; align-items: center; gap: 0.4rem; color: #25D366; text-decoration: none;">
+      <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 448 512" fill="#25D366">
+        <path d="..." />
+      </svg>
+      WhatsApp
+    </a>
+
+    <a href="https://instagram.com/ikoet_dapoer?igsh=MTZid2RvcnkzaXBp" target="_blank" title="Instagram" style="display: flex; align-items: center; gap: 0.4rem; color: #E1306C; text-decoration: none;">
+      <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 448 512" fill="#E1306C">
+        <path d="..." />
+      </svg>
+      Instagram
+    </a>
+  </footer>
+
+</body>
+</html>

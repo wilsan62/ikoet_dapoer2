@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Keranjang - ikoet_dapoer</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('images/bg.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: rgba(0, 0, 0, 0.6);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    .container {
+      padding: 2rem;
+    }
+
+    .cart-item {
+      background-color: rgba(0, 0, 0, 0.5);
+      margin-bottom: 1rem;
+      padding: 1rem;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cart-item img {
+      width: 80px;
+      border-radius: 8px;
+      margin-right: 1rem;
+    }
+
+    .cart-info {
+      flex: 1;
+      margin-left: 1rem;
+    }
+
+    .cart-info h4 {
+      margin: 0 0 0.3rem 0;
+    }
+
+    .cart-actions button {
+      background-color: #ff4500;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .cart-actions button:hover {
+      background-color: #e03e00;
+    }
+
+    .total {
+      font-size: 1.3rem;
+      font-weight: bold;
+      text-align: right;
+      margin-top: 2rem;
+    }
+
+    .checkout-btn {
+      display: block;
+      margin: 2rem auto 0;
+      padding: 0.8rem 2rem;
+      background-color: #ff4500;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .checkout-btn:hover {
+      background-color: #e03e00;
+    }
+
+    .empty-cart {
+      text-align: center;
+      margin-top: 5rem;
+      font-size: 1.2rem;
+      color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <header class="main-header">
+    <div class="logo">ikoet_dapoer 🌶️</div>
+    <nav class="nav-links">
+      <a href="index.html" style="text-decoration: none; color: white;">← Kembali</a>
+    </nav>
+  </header>
+
+  <div class="container" id="cart-container">
+    <!-- Isi keranjang akan di-render di sini -->
+  </div>
+
+  <script>
+    const cartContainer = document.getElementById("cart-container");
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    function renderCart() {
+      cartContainer.innerHTML = "";
+
+      if (cart.length === 0) {
+        cartContainer.innerHTML = `<p class="empty-cart">Keranjang kamu masih kosong 😢</p>`;
+        return;
+      }
+
+      let total = 0;
+
+      cart.forEach((item, index) => {
+        total += item.price;
+
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "cart-item";
+
+        itemDiv.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <div class="cart-info">
+            <h4>${item.name}</h4>
+            <p>Rp${item.price.toLocaleString()}</p>
+          </div>
+          <div class="cart-actions">
+            <button onclick="removeItem(${index})">Hapus</button>
+          </div>
+        `;
+
+        cartContainer.appendChild(itemDiv);
+      });
+
+      const totalDiv = document.createElement("div");
+      totalDiv.className = "total";
+      totalDiv.innerText = `Total: Rp${total.toLocaleString()}`;
+      cartContainer.appendChild(totalDiv);
+
+      const checkoutBtn = document.createElement("button");
+      checkoutBtn.className = "checkout-btn";
+      checkoutBtn.innerText = "Checkout";
+      checkoutBtn.onclick = () => {
+        window.location.href = "receipt.html";
+      };
+      cartContainer.appendChild(checkoutBtn);
+    }
+
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    renderCart();
+  </script>
+  <footer style="
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  color: #ccc;
+  text-align: center;
+  padding: 0.8rem;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  z-index: 100;
+">
+  <span>&copy; 2025 ikoet_dapoer. All rights reserved.</span>
+
+  <a href="https://wa.me/6281234567890" target="_blank" title="WhatsApp" style="display: flex; align-items: center; gap: 0.4rem; color: #25D366; text-decoration: none;">
+    <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 448 512" fill="#25D366">
+      <path d="M380.9 97.1C339-1.6 217.1-31.8 132.2 26.5 59.8 76.1 30.7 165.5 58.1 245.2L0 480l241.4-63.8c84.2 31.2 178.8-9.2 208.2-91.6 30.3-84.2-11-176.5-68.7-227.5zm-53.1 241.1c-10.3 28.6-54.1 52.5-95.8 42.6-25.1-5.9-62.6-28.3-98.3-71.9s-47.3-81.3-41.3-106.6c9.6-41.5 38.2-39.5 52.6-37.5 13.1 1.9 19.6 18.6 25.8 34.1 4.3 10.6 9.3 23.2 5.7 29.5-3.7 6.5-12.5 13.7-19.1 18.6-3.8 2.9-5.8 4.3-3.2 8.9 10.6 19.2 33.3 44.4 53.2 56.2 5.2 3 8.3 2.5 11.9-0.8 6.6-6.3 14.3-15.2 18.5-21.3 2.9-4.2 5.9-3.5 9.3-2 8.7 3.7 21.8 10.5 30.3 15.5 9 5.4 17.1 8.7 19.5 13.4 2.4 4.6 2.4 13.6-1.2 23.2z"/>
+    </svg>
+    WhatsApp
+  </a>
+
+  <a href="https://instagram.com/ikoet_dapoer" target="_blank" title="Instagram" style="display: flex; align-items: center; gap: 0.4rem; color: #E1306C; text-decoration: none;">
+    <svg xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 448 512" fill="#E1306C">
+      <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9 114.9-51.3 114.9-114.9S287.6 141 224.1 141zm0 189.6c-41.3 0-74.7-33.4-74.7-74.7s33.4-74.7 74.7-74.7 74.7 33.4 74.7 74.7-33.4 74.7-74.7 74.7zm146.4-194.3c0 14.9-12.1 27-27 27-14.9 0-27-12.1-27-27s12.1-27 27-27 27 12.1 27 27zm76.1 27.2c-1.7-35.3-9.9-66.7-36.2-93-26.3-26.3-57.7-34.5-93-36.2C284.1 32 163.9 32 128.6 33.7c-35.3 1.7-66.7 9.9-93 36.2S1.1 127.1-.6 162.4C-2.3 197.7-2.3 318 1.1 353.4c1.7 35.3 9.9 66.7 36.2 93 26.3 26.3 57.7 34.5 93 36.2 35.4 2.3 155.6 2.3 191 0 35.3-1.7 66.7-9.9 93-36.2 26.3-26.3 34.5-57.7 36.2-93 2.3-35.4 2.3-155.6 0-191zm-48.1 232.1c-7.8 19.6-22.9 34.7-42.5 42.5-29.4 11.7-99.4 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.5-42.5-11.7-29.4-9-99.4-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.5-42.5 29.4-11.7 99.4-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.5 42.5 11.7 29.4 9 99.4 9 132.1s2.6 102.7-9 132.1z"/>
+    </svg>
+    Instagram
+  </a>
+</footer>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Struk Pembelian</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Struk Pembelian</h1>
+    <a href="index.html">⬅️ Kembali ke Beranda</a>
+  </header>
+
+  <main>
+    <div id="checkout-items" class="cart-grid"></div>
+    <div class="cart-summary">
+      <h3>Total: <span id="checkout-total">Rp0</span></h3>
+      <button onclick="printReceipt()">Cetak Struk</button>
+    </div>
+  </main>
+
+  <script src="checkout.js"></script>
+</body>
+</html>
